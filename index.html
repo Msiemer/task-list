@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TO DO LIST</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+	    <div>First Name:<input type="text" id="txtfirstName" placeholder="Name" value="Mathias" /></div>
+	    <div>Last Name:<input type="text" id="txtlastName" placeholder="Name" value="Siemer" /></div>
+	    <div><button id="btnSubmit">Submit</button></div>	
+	    <div id="myNames"></div>
+
+	    <script>
+	    console.log("hi");
+
+	    var submitButton = document.querySelector("#btnSubmit")
+
+	    var doThisWorkWhenTheButtonIsClicked = function() {
+	        var firstName = document.querySelector("#txtfirstName");
+	        var lastName = document.querySelector("#txtlastName");
+
+	        console.log("firstName: " + firstName.value);
+	        console.log("lastName: " + lastName.value);
+
+	        localStorage.fullName = firstName.value + " " + lastName.value;
+
+	        var names = document.querySelector("#myNames");
+	        names.innerHTML = localStorage.fullName;
+
+	    }
+
+	    submitButton.addEventListener("click", doThisWorkWhenTheButtonIsClicked);
+	</script>
+</body>
+<!-- <body>
+    <SECTION class="header">
+        <h1>MY TO DO LIST</h1></SECTION>
+    <section class="MY-LIST">
+        <h1>some text</h1></section>
+    <section class="MY-LIST">
+        <h1>some text</h1></section>
+    <section class="MY-LIST">
+        <h1>some text</h1></section>
+    <section class="MY-LIST">
+        <h1>some text</h1></section>
+    <div class="border">
+        Add a new to do item
+        <section></section>
+    </div> -->
+
+</html>
