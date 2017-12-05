@@ -3,52 +3,122 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>TO DO LIST</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>task list</title>
+    <style>
+    .body {
+        margin: 0px;
+        background-color: lightblue;
+        /*color: white;
+*/
+    }
+
+    .header {
+        font-family: arial;
+        border-style: dashed solid dotted solid;
+        align-items: center;
+        justify-content: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .Task {
+        font-family: arial;
+        float: left;
+        flex: 5;
+    }
+
+    .task-border {
+        flex: 5;
+        padding: 5px;
+        border-style: dotted solid dashed;
+        padding: 5px;
+    }
+
+    .left-rail {
+        padding: 10px;
+        border: 3px solid black;
+        font-family: arial;
+        flex: 1;
+    }
+
+    .right-rail {
+        padding: 10px;
+        border-left: 1px;
+        border: 3px solid black;
+        font-family: arial;
+        flex: 1;
+    }
+
+    .main-content {
+        display: flex;
+        height: 90%;
+        padding: 10px;
+    }
+
+    .todo {
+        padding-right: 10px;
+    }
+
+    .TEXT {
+        font-family: arial;
+        border-style: dashed solid dashed solid;
+        padding: 5px 0px 5px 0px;
+    }
+    </style>
 </head>
 
-<body>
-	    <div>First Name:<input type="text" id="txtfirstName" placeholder="Name" value="Mathias" /></div>
-	    <div>Last Name:<input type="text" id="txtlastName" placeholder="Name" value="Siemer" /></div>
-	    <div><button id="btnSubmit">Submit</button></div>	
-	    <div id="myNames"></div>
+<body class="body">
+    <div>
+        <center>
+            <header class="header">My ToDo List</header>
+        </center>
+    </div>
+    <section class="main-content">
+        <aside class="left-rail">
+            <h3>left rail</h3></aside>
+        <div class="task-border">
+            <div class="Task">Task:
+                <input type="text" id="txt-task" placeholder="ToDos" />
+            </div>
+            <div>
+                <button id="btn-submit" class="button">ADD</button>
+            </div>
+            <div class="todos" id="todos"></div>
+        </div>
+        <script>
+        var task = document.querySelector("#txt-task");
+        var submitButton = document.querySelector("#btn-submit");
 
-	    <script>
-	    console.log("hi");
+        submitButton.addEventListener("click", function() {
+            if (localStorage.taskCount)
+                localStorage.taskCount = Number(localStorage.taskCount) + 1;
+            else
+                localStorage.taskCount = "1";
 
-	    var submitButton = document.querySelector("#btnSubmit")
+            localStorage["task" + localStorage.taskCount] = task.value;
 
-	    var doThisWorkWhenTheButtonIsClicked = function() {
-	        var firstName = document.querySelector("#txtfirstName");
-	        var lastName = document.querySelector("#txtlastName");
+            dispalyTasksFormLocalStorage();
+        });
 
-	        console.log("firstName: " + firstName.value);
-	        console.log("lastName: " + lastName.value);
 
-	        localStorage.fullName = firstName.value + " " + lastName.value;
+        function dispalyTasksFormLocalStorage() {
+            var tasksToDisplay = "";
+            for (var i = 1; i <= localStorage.taskCount; i++) {
+                tasksToDisplay = localStorage["task" + i] + "<br />" +
+                    tasksToDisplay;
+            }
 
-	        var names = document.querySelector("#myNames");
-	        names.innerHTML = localStorage.fullName;
+            document.querySelector("#todos").innerHTML = tasksToDisplay;
+        }
 
-	    }
-
-	    submitButton.addEventListener("click", doThisWorkWhenTheButtonIsClicked);
-	</script>
+        dispalyTasksFormLocalStorage
+        </script>
+        <aside class="right-rail">
+            <h3>right rail</h3></aside>
+    </section>
+    <center>
+        <section class="TEXT">TEXT</section>
+    </center>
 </body>
-<!-- <body>
-    <SECTION class="header">
-        <h1>MY TO DO LIST</h1></SECTION>
-    <section class="MY-LIST">
-        <h1>some text</h1></section>
-    <section class="MY-LIST">
-        <h1>some text</h1></section>
-    <section class="MY-LIST">
-        <h1>some text</h1></section>
-    <section class="MY-LIST">
-        <h1>some text</h1></section>
-    <div class="border">
-        Add a new to do item
-        <section></section>
-    </div> -->
 
 </html>
